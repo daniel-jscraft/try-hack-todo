@@ -4,6 +4,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import classes from './TaskItem.module.scss';
 
+
 function TaskItem({ task, deleteTask }) {
   const [isCompleted, setIsCompleted] = useState(task.completed);
   const [isLoading, setIsLoading] = useState(false);

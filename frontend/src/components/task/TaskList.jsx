@@ -1,22 +1,23 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import StatusFilter from './StatusFilter';
 import toast from 'react-hot-toast';
-
 import TaskItem from './TaskItem';
 import classes from './TaskList.module.scss';
+import Constants from '../../etc/Constants';
 
 function TaskList() {
   const [taskList, setTaskList] = useState([]);
   const [isAddingNew, setIsAddingNew] = useState(false);
+  const [statusFilter, setStatusFilter] = useState(Constants.statusFilterAll);
   const [newTask, setNewTask] = useState('');
+  const tasks = useRef({list: []});
 
   const getTasks = async () => {
     try {
       const { data } = await axios.get('/api/tasks/mytasks');
-      setTaskList(
-        data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)),
-      );
+      tasks.current.list = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      setTaskList(tasks.current.list);
     } catch (err) {
       console.log(err);
     }
@@ -29,6 +30,11 @@ function TaskList() {
   const addNewButtonClick = (task) => {
     setIsAddingNew(!isAddingNew);
   };
+
+  const resetFilters = ()=> {
+    setStatusFilter(Constants.statusFilterAll);
+    setTaskList(tasks.current.list);
+  }
 
   const addNewTask = async (e) => {
     e.preventDefault();
@@ -43,7 +49,8 @@ function TaskList() {
       toast.success('New task added');
       setIsAddingNew(false);
       setNewTask('');
-      setTaskList([{ ...data }, ...taskList]);
+      tasks.current.list = [{ ...data }, ...tasks.current.list];
+      resetFilters();
     } catch (err) {
       console.log(err);
     }
@@ -53,11 +60,25 @@ function TaskList() {
     const {_id} = task;
     try {
       await axios.delete(`/api/tasks/${_id}`);
-      setTaskList(taskList.filter((task) => task._id !== _id));
+      tasks.current.list = tasks.current.list.filter((task) => task._id !== _id)
+      setTaskList(tasks.current.list)
     } catch (err) {
       console.log(err);
     }
   };
+
+  const onStatusFilterChange = (filter) => {
+    if (filter === Constants.statusFilterAll) {
+      setTaskList(tasks.current.list);
+    }
+    if (filter === Constants.statusFilterCompleted) {
+      setTaskList(tasks.current.list.filter((task) => task.completed));
+    }
+    if (filter === Constants.statusFilterUncompleted) {
+      setTaskList(tasks.current.list.filter((task) => !task.completed));
+    }
+    setStatusFilter(filter)
+  }
 
   return (
     <div>
@@ -69,6 +90,12 @@ function TaskList() {
         >
           Add New
         </button>
+      </div>
+      <div className={classes.topBar}>
+        <StatusFilter 
+          statusFilter={statusFilter}
+          onStatusFilterChange = {onStatusFilterChange}
+        />
       </div>
       {isAddingNew && (
         <form className={classes.addNewForm} onSubmit={addNewTask}>
