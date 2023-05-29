@@ -42,6 +42,21 @@ function TaskItem({ task, deleteTask }) {
     }
   };
 
+  const handleDeleteTask = async ()=> {
+    const confirmation = confirm("Delete this task?")
+    if(confirmation) {
+      try {
+        setIsLoading(true);
+        await deleteTask(task)
+        toast.success('Task deleted');
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }
+
   return (
     <tr className={classes.task_item}>
       <td className={classes.task_name}>
@@ -63,7 +78,7 @@ function TaskItem({ task, deleteTask }) {
         <button
           type="button"
           className={classes.deleteBtn}
-          onClick={() => deleteTask(task)}
+          onClick={handleDeleteTask}
         >
           Delete
         </button>

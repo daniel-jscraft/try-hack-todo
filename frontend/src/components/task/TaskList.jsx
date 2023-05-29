@@ -53,7 +53,6 @@ function TaskList() {
     const {_id} = task;
     try {
       await axios.delete(`/api/tasks/${_id}`);
-      toast.success('Task deleted');
       setTaskList(taskList.filter((task) => task._id !== _id));
     } catch (err) {
       console.log(err);
