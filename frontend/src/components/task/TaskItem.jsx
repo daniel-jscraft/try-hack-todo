@@ -23,6 +23,25 @@ function TaskItem({ task, deleteTask }) {
     }
   };
 
+  const handleUpdateTaskTitle = async () => {
+    const newTitle = prompt("Update the task:", task.title);
+    if(newTitle) {
+      try {
+        setIsLoading(true);
+        await axios.put(`/api/tasks/${task._id}`, {
+          title: newTitle
+        });
+        setIsCompleted(!isCompleted);
+        toast.success('Task updated successfully');
+        task.title = newTitle;
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
+
   return (
     <tr className={classes.task_item}>
       <td className={classes.task_name}>
@@ -37,7 +56,14 @@ function TaskItem({ task, deleteTask }) {
         <button
           type="button"
           className={classes.deleteBtn}
-          onClick={() => deleteTask(task._id)}
+          onClick={handleUpdateTaskTitle}
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          className={classes.deleteBtn}
+          onClick={() => deleteTask(task)}
         >
           Delete
         </button>
