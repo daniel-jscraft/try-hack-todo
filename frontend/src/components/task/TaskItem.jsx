@@ -27,7 +27,7 @@ function TaskItem({ task, deleteTask }) {
     <tr className={classes.task_item}>
       <td className={classes.task_name}>
         <div className={classes.checkbox} onClick={handleCheckboxClick}>
-          <input type="checkbox" checked={isCompleted} disabled={isLoading} />
+          <input type="checkbox" defaultChecked={isCompleted} disabled={isLoading} />
         </div>
         <p>{task.title}</p>
       </td>
