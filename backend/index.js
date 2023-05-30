@@ -1,11 +1,11 @@
 import express from 'express';
+import mongoSanitize from 'express-mongo-sanitize';
 import 'dotenv/config';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import allRoutes from './routes/index.js';
-import mongoSanitize from 'express-mongo-sanitize';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
