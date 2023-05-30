@@ -22,5 +22,7 @@ The backend provides the folowing API endpoints:
 | Endpoint    | HTTP Verb    |
 | ----------- | ----------- |
 | auth/login  | POST       |
-| auth/register   | POST        |
+| auth/register | POST    |
+| auth/logout | GET    |
+| auth/is_logged_in | GET    |
 
