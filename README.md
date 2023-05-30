@@ -1,5 +1,12 @@
 # Try Hack Me ToDo
 
+Project walkthrough:
+
+[<img src="https://i.ytimg.com/vi/eWh0kclZr1I/maxresdefault.jpg" width="50%">](https://www.youtube.com/watch?v=eWh0kclZr1I "TODO Project walkthrough")
+
+
+
+
 
 ## How to install and run the application
 
