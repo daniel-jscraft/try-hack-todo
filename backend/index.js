@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import allRoutes from './routes/index.js';
+import mongoSanitize from 'express-mongo-sanitize';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -29,9 +30,11 @@ app.use(
     },
   }),
 );
+
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser());
+app.use(mongoSanitize());
 
 // routes
 app.use('/api', allRoutes);
