@@ -11,6 +11,7 @@ function TaskList() {
   const [taskList, setTaskList] = useState([]);
   const [isAddingNew, setIsAddingNew] = useState(false);
   const [statusFilter, setStatusFilter] = useState(Constants.statusFilterAll);
+  const [textFilter, setTextFilter] = useState('');
   const [newTask, setNewTask] = useState('');
   const tasks = useRef({list: []});
 
@@ -34,6 +35,7 @@ function TaskList() {
 
   const resetFilters = ()=> {
     setStatusFilter(Constants.statusFilterAll);
+    setTextFilter('');
     setTaskList(tasks.current.list);
   }
 
@@ -82,6 +84,12 @@ function TaskList() {
     setStatusFilter(filter)
   }
 
+  const onTextFilterChange = (filter) => {
+    console.log(filter)
+    setTaskList(tasks.current.list.filter((task) => task.title.indexOf(filter)!==-1));
+    setTextFilter(filter);
+  }
+
   return (
     <div>
       <div className={classes.topBar}>
@@ -92,12 +100,6 @@ function TaskList() {
         >
           Add New
         </button>
-      </div>
-      <div className={classes.topBar}>
-        <StatusFilter 
-          statusFilter={statusFilter}
-          onStatusFilterChange = {onStatusFilterChange}
-        />
       </div>
       {isAddingNew && (
         <form className={classes.addNewForm} onSubmit={addNewTask}>
@@ -111,6 +113,20 @@ function TaskList() {
           <button type="submit">Add</button>
         </form>
       )}
+      <div className={classes.topBar}>
+        <StatusFilter 
+          statusFilter={statusFilter}
+          onStatusFilterChange = {onStatusFilterChange}
+        />
+      </div>
+      <div className={classes.topBar}>
+        <input
+          type="text"
+          value={textFilter}
+          onChange={(e) => onTextFilterChange(e.target.value)}
+          placeholder="filter by name ..."
+        />
+      </div>
       {taskList.length > 0 ? (
         <table className={classes.taskList_table}>
           <tbody>
