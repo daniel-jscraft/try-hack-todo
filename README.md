@@ -25,4 +25,14 @@ The backend provides the folowing API endpoints:
 | auth/register | POST    |
 | auth/logout | GET    |
 | auth/is_logged_in | GET    |
+| tasks/all  | GET       |
+| tasks/ | POST    |
+| tasks/:taskId | PUT    |
+| tasks/myTasks | GET    |
+| tasks/deleteAll | DELETE    |
+| tasks/:taskId | DELETE    |
+| users/me/info/ | GET    |
+| users/me | GET    |
+| users/me | PUT    |
+
 
