@@ -73,14 +73,14 @@ function TaskItem({ task, deleteTask }) {
       <td>
         <button
           type="button"
-          className={classes.deleteBtn}
+          className={classes.actionBtn}
           onClick={handleUpdateTaskTitle}
         >
           Update
         </button>
         <button
           type="button"
-          className={classes.deleteBtn}
+          className={classes.actionBtn}
           onClick={handleDeleteTask}
         >
           Delete

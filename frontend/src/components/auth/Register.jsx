@@ -25,7 +25,7 @@ function Register() {
 
   return (
     <div className={classes.register}>
-      <h1 className={classes.title}>Register</h1>
+      <h1 className={classes.title}>👨‍💻 Register</h1>
       <form className={classes.authForm} onSubmit={register}>
         <label htmlFor="name">
           Full Name:

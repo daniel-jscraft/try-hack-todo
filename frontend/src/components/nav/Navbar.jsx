@@ -42,16 +42,15 @@ export default function Navbar() {
         <FaUserAlt className={classes.userIcon} />
         <div>
           <h1 className={classes.name}>{user.name}</h1>
-          <p className={classes.email}>{user.email}</p>
-          <Link to="/edit-profile" className={classes.editBtn}>
-            Edit
-          </Link>
         </div>
       </div>
       <nav>
-        <button type="button" className={classes.logout} onClick={handleLogout}>
-          logout
-        </button>
+        <Link to="/edit-profile" className={classes.navBtn}>
+          👨‍💻 Edit user profile
+        </Link>
+        <Link to="/edit-profile" className={classes.navBtn} onClick={handleLogout}>
+          🔓 Logout
+        </Link>
       </nav>
     </header>
   );

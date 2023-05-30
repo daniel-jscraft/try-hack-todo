@@ -17,7 +17,6 @@ function Login() {
   }, [auth]);
 
   const login = async (e) => {
-    console.log('login');
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -37,7 +36,7 @@ function Login() {
   };
   return (
     <div className={classes.register}>
-      <h1 className={classes.title}>Login</h1>
+      <h1 className={classes.title}>🔐 Login</h1>
       <form className={classes.authForm} onSubmit={login}>
         <label htmlFor="email">
           email:
