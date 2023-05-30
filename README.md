@@ -6,7 +6,7 @@
 In order to run the application:
 - clone this Git repo
 - run `npm i` both in the `backend` and `frontend` directories
-- after npm finises installing the modules run  `npm run dev`  both in `backend` and `frontend`
+- after npm finishes installing the modules run  `npm run dev`  both in `backend` and `frontend`
 - you can access the application at `http://localhost:3000/`
   
 The default configuration assumes MongoDb runs locally. In case you want to use MongoDb Atlas be sure to update the `DB_CONNECTION_STRING` in the `backend/.env` file.
@@ -18,7 +18,7 @@ The default configuration assumes MongoDb runs locally. In case you want to use 
 
 ## API routes
 
-The backend provides the folowing API endpoints:
+The backend provides the following API endpoints:
 | Endpoint    | HTTP Verb    |
 | ----------- | ----------- |
 | auth/login  | POST       |
@@ -34,5 +34,3 @@ The backend provides the folowing API endpoints:
 | users/me/info/ | GET    |
 | users/me | GET    |
 | users/me | PUT    |
-
-
