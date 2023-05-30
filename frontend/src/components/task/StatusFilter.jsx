@@ -12,7 +12,7 @@ function StatusFilter({onStatusFilterChange, statusFilter}) {
                 checked={statusFilter === Constants.statusFilterAll}
                 onChange={() => onStatusFilterChange(Constants.statusFilterAll)}
             />
-            <label htmlFor="regular">Show all</label>
+            <label htmlFor="all">Show all</label>
 
             <input
                 type="radio"
@@ -27,12 +27,12 @@ function StatusFilter({onStatusFilterChange, statusFilter}) {
             <input
                 type="radio"
                 name="statusFilter"
-                value={Constants.statusFilterUncompleted}
-                id="uncompleted"
-                checked={statusFilter === Constants.statusFilterUncompleted}
-                onChange={() => onStatusFilterChange(Constants.statusFilterUncompleted)}
+                value={Constants.statusFilterIncompleted}
+                id="incompleted"
+                checked={statusFilter === Constants.statusFilterIncompleted}
+                onChange={() => onStatusFilterChange(Constants.statusFilterIncompleted)}
             />
-            <label htmlFor="uncompleted">Uncompleted only</label>
+            <label htmlFor="incompleted">Incompleted only</label>
         </>
     );
 }

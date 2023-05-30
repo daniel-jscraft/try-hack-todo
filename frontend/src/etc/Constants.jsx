@@ -1,7 +1,7 @@
 const Constants = {
     statusFilterAll: 'all',
     statusFilterCompleted: 'completed',
-    statusFilterUncompleted: 'uncompleted'
+    statusFilterIncompleted: 'incompleted'
 }
 
 

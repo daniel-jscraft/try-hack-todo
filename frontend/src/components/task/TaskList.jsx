@@ -74,7 +74,7 @@ function TaskList() {
     if (filter === Constants.statusFilterCompleted) {
       setTaskList(tasks.current.list.filter((task) => task.completed));
     }
-    if (filter === Constants.statusFilterUncompleted) {
+    if (filter === Constants.statusFilterIncompleted) {
       setTaskList(tasks.current.list.filter((task) => !task.completed));
     }
     setStatusFilter(filter)
