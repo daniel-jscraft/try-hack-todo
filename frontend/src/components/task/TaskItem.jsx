@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DOMPurify from 'dompurify';
 import moment from 'moment';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -25,7 +26,8 @@ function TaskItem({ task, deleteTask }) {
   };
 
   const handleUpdateTaskTitle = async () => {
-    const newTitle = prompt("Update the task:", task.title);
+    let newTitle = prompt("Update the task:", task.title);
+    newTitle = DOMPurify.sanitize(newTitle);
     if(newTitle) {
       try {
         setIsLoading(true);

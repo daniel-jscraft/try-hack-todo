@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
+import DOMPurify from 'dompurify';
 import StatusFilter from './StatusFilter';
 import toast from 'react-hot-toast';
 import TaskItem from './TaskItem';
@@ -43,8 +44,9 @@ function TaskList() {
       return;
     }
     try {
+
       const { data } = await axios.post('/api/tasks/', {
-        title: newTask,
+        title: DOMPurify.sanitize(newTask),
       });
       toast.success('New task added');
       setIsAddingNew(false);

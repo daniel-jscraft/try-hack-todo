@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import toast from 'react-hot-toast';
+import DOMPurify from 'dompurify';
+
 
 import classes from './AuthForm.module.scss';
 
@@ -8,9 +10,9 @@ function Register() {
   const register = async (e) => {
     e.preventDefault();
     const user = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
+      name: DOMPurify.sanitize(e.target.name.value),
+      email: DOMPurify.sanitize(e.target.email.value),
+      password: DOMPurify.sanitize(e.target.password.value),
     };
     try {
       await axios.post(`/api/auth/register`, user);

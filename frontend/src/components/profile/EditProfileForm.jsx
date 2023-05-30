@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import DOMPurify from 'dompurify';
 import { Link } from 'react-router-dom';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import axios from 'axios';
@@ -28,7 +29,7 @@ function EditProfileForm() {
   const updateUserInfo = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value,
+      [e.target.name]: DOMPurify.sanitize(e.target.value),
     });
   };
 

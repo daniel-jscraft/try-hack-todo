@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import DOMPurify from 'dompurify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
@@ -20,17 +21,16 @@ function Login() {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log('auth before ');
-    console.log(auth);
     try {
       const response = await axios.post('/api/auth/login', {
-        email,
-        password,
+        email: DOMPurify.sanitize(email),
+        password: DOMPurify.sanitize(password),
       });
       document.cookie = `access_token=${response.data.token}`;
       await verifyAuth();
       navigate('/');
     } catch (err) {
+      alert("⛔️ Authentication failed!\nSee JS console for more info.");
       console.log(err);
       verifyAuth();
     }
